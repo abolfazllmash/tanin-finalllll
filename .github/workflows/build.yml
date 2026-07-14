@@ -19,10 +19,19 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - run: gradle assembleDebug --no-daemon --stacktrace
+      - name: Decode keystore
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > app/resonance.jks
+
+      - name: Build signed APK
+        run: |
+          gradle assembleRelease --no-daemon \
+            -Pandroid.injected.signing.store.file=$PWD/app/resonance.jks \
+            -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} \
+            -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} \
+            -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
       - uses: actions/upload-artifact@v4
         with:
-          name: apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: apk-signed
+          path: app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
