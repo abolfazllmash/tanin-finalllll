@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">طنین</string>
+    <string name="app_name_caps">طنین</string>
+    <string name="tagline">یک لمس. زنجیره‌ای از امواج نور بساز و اهداف را فتح کن.</string>
+    <string name="legend">انواع گوی‌ها:\n• ساده — انفجار دایره‌ای\n• پرتویی — شلیک خطی\n• شکافنده — پالس دوگانه\n• رزوناتور — افزایش ضریب امتیاز\n\nرنگ یعنی طنین: برخورد پیاپی گوی‌های هم‌رنگ، ضریب امتیاز را بیشتر می‌کند.</string>
+    <string name="play">شروع بازی</string>
+    <string name="resume">ادامه</string>
+    <string name="main_menu">منوی اصلی</string>
+    <string name="paused">مکث</string>
+    <string name="pause">مکث</string>
+    <string name="next_level">مرحله بعد</string>
+    <string name="try_again">یک بار دیگر</string>
+    <string name="retry">تلاش دوباره</string>
+    <string name="level_cleared">مرحله کامل شد!</string>
+    <string name="grand_cleared">چالش بزرگ فتح شد!</string>
+    <string name="grand_failed">چالش بزرگ ناتمام ماند</string>
+    <string name="so_close">نزدیک بود!</string>
+    <string name="sound_on">صدا: روشن</string>
+    <string name="sound_off">صدا: خاموش</string>
+    <string name="best_level">بهترین: مرحله %1$s</string>
+    <string name="result_sub">%1$s از %2$s روشن • امتیاز %3$s</string>
+</resources>

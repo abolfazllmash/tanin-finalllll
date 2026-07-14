@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <com.example.resonance.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- In-game pause button -->
+    <Button
+        android:id="@+id/btnPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/btn_pause"
+        android:fontFamily="@font/ravi_medium"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:text="@string/pause"
+        android:textColor="#D9FFFFFF"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <!-- RESULT overlay -->
+    <LinearLayout
+        android:id="@+id/overlayResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3040610"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtResultTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ravi_medium"
+            android:text="@string/level_cleared"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/txtResultSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="#D1FFFFFF"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnResultAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_accent"
+            android:fontFamily="@font/ravi_medium"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="26dp"
+            android:paddingEnd="26dp"
+            android:paddingTop="11dp"
+            android:paddingBottom="11dp"
+            android:text="@string/next_level"
+            android:textColor="@color/accent_dark"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- PAUSE overlay -->
+    <LinearLayout
+        android:id="@+id/overlayPause"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D1040610"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ravi_medium"
+            android:text="@string/paused"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btnResume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_accent"
+            android:fontFamily="@font/ravi_medium"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="26dp"
+            android:paddingEnd="26dp"
+            android:paddingTop="11dp"
+            android:paddingBottom="11dp"
+            android:text="@string/resume"
+            android:textColor="@color/accent_dark"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnMainMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_ghost"
+            android:fontFamily="@font/ravi_medium"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:text="@string/main_menu"
+            android:textColor="@color/text_dim"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnSoundPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@android:color/transparent"
+            android:text="@string/sound_on"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- MAIN MENU overlay -->
+    <LinearLayout
+        android:id="@+id/overlayMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ravi_medium"
+            android:letterSpacing="0.05"
+            android:text="@string/app_name_caps"
+            android:textColor="#FFFFFF"
+            android:textSize="38sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:fontFamily="@font/ravi_medium"
+            android:text="@string/tagline"
+            android:textColor="@color/text_secondary"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp" />
+
+        <TextView
+            android:id="@+id/txtMenuBest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/ravi_medium"
+            android:textColor="@color/green"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/btn_accent"
+            android:fontFamily="@font/ravi_medium"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="46dp"
+            android:paddingEnd="46dp"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:text="@string/play"
+            android:textColor="@color/accent_dark"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btnSoundMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/ravi_medium"
+            android:text="@string/sound_on"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</FrameLayout>
