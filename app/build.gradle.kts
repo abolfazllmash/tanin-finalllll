@@ -4,26 +4,62 @@ plugins {
 }
 
 android {
-    namespace = "com.example.resonance"
+    namespace = "com.cashfteam.resonance"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.resonance"
+        applicationId = "com.cashfteam.resonance"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+
+        // Bump versionCode by 1 for EVERY release you upload to a store.
+        versionCode = 2
+        versionName = "1.1"
+
+        resourceConfigurations += listOf("fa", "en")
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    // --- Release signing ---
+    // Values come from environment variables (set as GitHub Secrets in CI).
+    // If they're missing, we simply skip signing so a plain build still works.
+    val storeFileEnv = System.getenv("KEYSTORE_FILE")
+    val storePasswordEnv = System.getenv("KEYSTORE_PASSWORD")
+    val keyAliasEnv = System.getenv("KEY_ALIAS")
+    val keyPasswordEnv = System.getenv("KEY_PASSWORD")
+    val hasSigning = !storeFileEnv.isNullOrBlank() && !storePasswordEnv.isNullOrBlank() &&
+            !keyAliasEnv.isNullOrBlank() && !keyPasswordEnv.isNullOrBlank()
+
+    signingConfigs {
+        if (hasSigning) {
+            create("release") {
+                storeFile = file(storeFileEnv!!)
+                storePassword = storePasswordEnv
+                keyAlias = keyAliasEnv
+                keyPassword = keyPasswordEnv
+                enableV1Signing = true
+                enableV2Signing = true
+            }
+        }
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            if (hasSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -33,6 +69,15 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+    packaging {
+        resources {
+            excludes += setOf(
+                "/META-INF/{AL2.0,LGPL2.1}",
+                "/META-INF/DEPENDENCIES",
+                "/META-INF/LICENSE*"
+            )
+        }
     }
 }
 
