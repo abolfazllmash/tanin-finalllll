@@ -4,7 +4,8 @@
     <string name="app_name_caps">طنین</string>
     <string name="tagline">یک لمس. زنجیره‌ای از امواج نور بساز و اهداف را فتح کن.</string>
     <string name="legend">انواع گوی‌ها:\n• ساده — انفجار دایره‌ای\n• پرتویی — شلیک خطی\n• شکافنده — پالس دوگانه\n• رزوناتور — افزایش ضریب امتیاز\n\nرنگ یعنی طنین: برخورد پیاپی گوی‌های هم‌رنگ، ضریب امتیاز را بیشتر می‌کند.</string>
-    <string name="play">شروع بازی</string>
+    <string name="play">شروع از ابتدا</string>
+    <string name="continue_from">ادامه از مرحله %1$s</string>
     <string name="resume">ادامه</string>
     <string name="main_menu">منوی اصلی</string>
     <string name="paused">مکث</string>

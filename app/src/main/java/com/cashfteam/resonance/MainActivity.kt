@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity(), GameListener {
         }
         binding.gameView.engine = engine
 
-        binding.btnPlay.setOnClickListener { startGame() }
+        binding.btnPlay.setOnClickListener { startGame(fromLevel = 1) }
+        binding.btnContinue.setOnClickListener { startGame(fromLevel = prefs.currentLevel) }
         binding.btnPause.setOnClickListener { pauseGame() }
         binding.btnResume.setOnClickListener { resumeGame() }
         binding.btnMainMenu.setOnClickListener { showMenu() }
@@ -78,14 +79,14 @@ class MainActivity : AppCompatActivity(), GameListener {
             .show(WindowInsetsCompat.Type.systemBars())
     }
 
-    private fun startGame() {
+    private fun startGame(fromLevel: Int = 1) {
         // Surface may not be sized yet on a very fast first tap; retry next frame.
         if (engine.W < 1f || engine.H < 1f) {
-            binding.gameView.post { startGame() }
+            binding.gameView.post { startGame(fromLevel) }
             return
         }
         engine.scene = Scene.PLAYING
-        engine.newField(1)
+        engine.newField(fromLevel)
         binding.overlayMenu.visibility = View.GONE
         binding.overlayResult.visibility = View.GONE
         binding.overlayPause.visibility = View.GONE
@@ -96,6 +97,12 @@ class MainActivity : AppCompatActivity(), GameListener {
     private fun showMenu() {
         engine.scene = Scene.MENU
         binding.txtMenuBest.text = getString(R.string.best_level, Fa.num(engine.bestLevel))
+        if (prefs.hasSavedProgress()) {
+            binding.btnContinue.visibility = android.view.View.VISIBLE
+            binding.btnContinue.text = getString(R.string.continue_from, Fa.num(prefs.currentLevel))
+        } else {
+            binding.btnContinue.visibility = android.view.View.GONE
+        }
         binding.overlayPause.visibility = View.GONE
         binding.overlayResult.visibility = View.GONE
         binding.btnPause.visibility = View.GONE
@@ -135,6 +142,8 @@ class MainActivity : AppCompatActivity(), GameListener {
 
     // GameListener — invoked from the Choreographer loop on the main thread.
     override fun onRoundEnd(cleared: Boolean, ignited: Int, total: Int, score: Int) {
+        // Persist "continue from" position: next level if cleared, same level if not.
+        prefs.currentLevel = if (cleared) engine.level + 1 else engine.level
         val close = !cleared && (engine.target - ignited) <= max(1, (engine.target * GameConfig.CLOSE_FRACTION).roundToInt())
         val grand = engine.isGrand(engine.level)
         binding.txtResultTitle.text = getString(
