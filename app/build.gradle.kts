@@ -13,8 +13,8 @@ android {
         targetSdk = 34
 
         // Bump versionCode by 1 for EVERY release you upload to a store.
-        versionCode = 4
-        versionName = "3"
+        versionCode = 2
+        versionName = "1.1"
 
         resourceConfigurations += listOf("fa", "en")
         vectorDrawables.useSupportLibrary = true
@@ -37,8 +37,9 @@ android {
                 storePassword = storePasswordEnv
                 keyAlias = keyAliasEnv
                 keyPassword = keyPasswordEnv
-                enableV1Signing = true
+                enableV1Signing = false
                 enableV2Signing = true
+                enableV3Signing = true
             }
         }
     }
