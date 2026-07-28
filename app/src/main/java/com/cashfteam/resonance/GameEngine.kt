@@ -97,7 +97,7 @@ class GameEngine {
 
     private fun regenDust() {
         dust.clear()
-        repeat(26) {
+        repeat(46) {
             dust.add(
                 Dust(
                     Random.nextFloat() * W,
@@ -301,20 +301,13 @@ class GameEngine {
     }
 
     private fun igniteRadial(cx: Float, cy: Float, rad: Float) {
-        // Iterate by index (no iterator allocation) and skip non-idle orbs cheaply.
-        val list = orbs
-        var i = 0
-        val n = list.size
-        while (i < n) {
-            val o = list[i]
+        for (o in orbs) {
             if (o.state == OrbState.IDLE) {
                 val dx = o.x - cx
                 val dy = o.y - cy
                 val rr = rad + o.r * 0.4f
-                val sum = dx * dx + dy * dy
-                if (sum <= rr * rr) igniteOrb(o)
+                if (dx * dx + dy * dy <= rr * rr) igniteOrb(o)
             }
-            i++
         }
     }
 

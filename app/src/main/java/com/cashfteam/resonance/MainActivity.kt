@@ -142,7 +142,6 @@ class MainActivity : AppCompatActivity(), GameListener {
 
     // GameListener — invoked from the Choreographer loop on the main thread.
     override fun onRoundEnd(cleared: Boolean, ignited: Int, total: Int, score: Int) {
-        // Persist "continue from" position: next level if cleared, same level if not.
         prefs.currentLevel = if (cleared) engine.level + 1 else engine.level
         val close = !cleared && (engine.target - ignited) <= max(1, (engine.target * GameConfig.CLOSE_FRACTION).roundToInt())
         val grand = engine.isGrand(engine.level)

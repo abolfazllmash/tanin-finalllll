@@ -13,8 +13,8 @@ android {
         targetSdk = 34
 
         // Bump versionCode by 1 for EVERY release you upload to a store.
-        versionCode = 4
-        versionName = "1.3"
+        versionCode = 5
+        versionName = "1.4"
 
         resourceConfigurations += listOf("fa", "en")
         vectorDrawables.useSupportLibrary = true
